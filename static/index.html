@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>智能化运维管理系统</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+    <h1>智能化运维管理系统</h1>
+    <button id="generate-report">生成报表</button>
+    <div id="report-container"></div>
+    <script src="/static/script.js"></script>
+    <h1>Host Management</h1>
+
+    <!-- 添加扫描主机按钮 -->
+    <button onclick="scanHosts()">Scan Hosts</button>
+    <div id="scanResults"></div>
+
+    <script>
+        function scanHosts() {
+            // 发起扫描主机请求
+            fetch("/scanhosts")
+                .then(response => {
+                    if (response.ok) {
+                        // 扫描成功
+                        return response.json();
+                    } else {
+                        // 扫描失败
+                        throw new Error("Scan Hosts Failed");
+                    }
+                })
+                .then(data => {
+                    // 构造扫描结果的HTML输出
+                    let output = "<h2>Scan Results:</h2>";
+                    output += "<table>";
+                    output += "<tr><th>ID</th><th>Name</th><th>IP</th><th>Status</th></tr>";
+                    data.forEach(host => {
+                        output += "<tr>";
+                        output += "<td>" + host.id + "</td>";
+                        output += "<td>" + host.name + "</td>";
+                        output += "<td>" + host.ip + "</td>";
+                        output += "<td>" + host.status + "</td>";
+                        output += "</tr>";
+                    });
+                    output += "</table>";
+
+                    // 显示扫描结果
+                    document.getElementById("scanResults").innerHTML = output;
+                })
+                .catch(error => {
+                    console.log("Scan Hosts Error:", error);
+                });
+        }
+    </script>
+    <h2>主机列表</h2>
+<table id="host-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>IP</th>
+        <th>Location</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>
+
