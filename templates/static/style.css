@@ -47,3 +47,39 @@ button {
     border: 1px solid #ced4da;
     border-radius: 4px;
 }
+/* Add your CSS styles here */
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #333;
+}
+
+#hostList {
+    margin-bottom: 20px;
+}
+
+.host {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.host span {
+    font-weight: bold;
+}
+
+#addHostForm {
+    margin-top: 20px;
+}
+
+#addHostForm label {
+    display: inline-block;
+    width: 70px;
+}
+
+#addHostForm input {
+    margin-bottom: 10px;
+}
+

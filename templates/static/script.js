@@ -110,6 +110,49 @@ function scanHosts() {
             console.log("Scan Hosts Error:", error);
         });
 }
+// JavaScript code for handling dynamic updates and form submission
+
+// Get the form element
+const addHostForm = document.getElementById('addHostForm');
+
+// Get the host list container
+const hostList = document.getElementById('hostList');
+
+// Add an event listener for form submission
+addHostForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get the input values
+    const nameInput = document.getElementById('nameInput');
+    const ipInput = document.getElementById('ipInput');
+    const locationInput = document.getElementById('locationInput');
+
+    // Create a new host element
+    const hostElement = document.createElement('div');
+    hostElement.classList.add('host');
+
+    // Create the host details
+    const nameElement = document.createElement('span');
+    nameElement.textContent = 'Name: ' + nameInput.value;
+    hostElement.appendChild(nameElement);
+
+    const ipElement = document.createElement('span');
+    ipElement.textContent = 'IP: ' + ipInput.value;
+    hostElement.appendChild(ipElement);
+
+    const locationElement = document.createElement('span');
+    locationElement.textContent = 'Location: ' + locationInput.value;
+    hostElement.appendChild(locationElement);
+
+    // Add the host to the host list
+    hostList.appendChild(hostElement);
+
+    // Clear the input fields
+    nameInput.value = '';
+    ipInput.value = '';
+    locationInput.value = '';
+});
+
 
 
 
